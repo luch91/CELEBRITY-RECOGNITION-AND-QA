@@ -25,9 +25,7 @@ jobs:
       - run:
           name: Authenticate with Google Cloud
           command: |
-            cat << 'EOF' > gcp-key.json
-            $GCLOUD_SERVICE_KEY
-            EOF
+            echo '$GCLOUD_SERVICE_KEY' > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
             gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
       - run:
