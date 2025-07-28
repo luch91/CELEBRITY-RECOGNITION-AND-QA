@@ -21,11 +21,10 @@ jobs:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker  # ✅ Correct usage without version
+      - setup_remote_docker
       - run:
           name: Authenticate with Google Cloud
           command: |
-            echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
             gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
       - run:
@@ -38,11 +37,10 @@ jobs:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker  # ✅ Correct usage without version
+      - setup_remote_docker
       - run:
           name: Authenticate with Google Cloud
           command: |
-            echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
             gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
       - run:
