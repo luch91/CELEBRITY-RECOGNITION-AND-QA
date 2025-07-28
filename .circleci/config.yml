@@ -21,16 +21,15 @@ jobs:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker:
+      - setup_remote_docker  # ✅ Correct usage without version
       - run:
-          name: Authenticate with google cloud
+          name: Authenticate with Google Cloud
           command: |
             echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
             gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
-
       - run:
-          name: Build and Push Image
+          name: Build and Push Docker Image
           command: |
             docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT_ID/celeb-llmop/llmops-app:latest .
             docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT_ID/celeb-llmop/llmops-app:latest
@@ -39,15 +38,13 @@ jobs:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.7
+      - setup_remote_docker  # ✅ Correct usage without version
       - run:
-          name: Authenticate with google cloud
+          name: Authenticate with Google Cloud
           command: |
             echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
             gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
-
       - run:
           name: Configure GKE
           command: |
