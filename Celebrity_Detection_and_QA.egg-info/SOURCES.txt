@@ -1,0 +1,12 @@
+setup.py
+Celebrity_Detection_and_QA.egg-info/PKG-INFO
+Celebrity_Detection_and_QA.egg-info/SOURCES.txt
+Celebrity_Detection_and_QA.egg-info/dependency_links.txt
+Celebrity_Detection_and_QA.egg-info/requires.txt
+Celebrity_Detection_and_QA.egg-info/top_level.txt
+app/__init__.py
+app/routes.py
+app/utils/__init__.py
+app/utils/celebrity_detector.py
+app/utils/image_handler.py
+app/utils/qa_engine.py

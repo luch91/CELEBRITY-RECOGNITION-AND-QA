@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: Celebrity-Detection-and-QA
+Version: 1.0.0
+Author: Oluchi
+Requires-Dist: Flask
+Requires-Dist: opencv-python
+Requires-Dist: numpy
+Requires-Dist: requests
+Requires-Dist: python
+Dynamic: author
+Dynamic: requires-dist

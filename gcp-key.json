@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "celeb-mlop",
+  "private_key_id": "826d9de2ea0730db000a1dd9f6bfb004cc3bf2ce",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDPFsqgf/i7PbEx\nG2Im6HBryFoJjB3K0garytd8AGSJsWIoWj5tncKp9unElT0AwEoxZV4DgJ9nfGpr\njP/kXh0rHcf1r3QhjtLKtUVbhU1SeVVdJRdljgEpVgEMoy3+HdEEUU/c0cIwq9jQ\nXKBEQ51E0JGa7bFjQoGfU6LbkfUkoet/c6D6KK832g1+GutYrNuCR9SgMW9Q8VFi\nIqhxeDl2m+S5GCYVcUcJyUJPHV7TwXXuz7mZ+lnzMG0scJBP/yzc436WbSi8iqRJ\nNhOB6LCQuZhajNJ1dYOj0Cnbb8SKHxlGYky8KHdR7jchtYP5A53cXLVR1pgMNcdc\nu8sWAFsHAgMBAAECggEABumIVuYem8VZ4j07P/g3NGnKE5KBNhFflqFdIu7ybCQn\nFhi5B7ih1EGBGQYwNJO2hkKPakeDSpV9Cdz5d5pql9NVJs617h7Ry2FUkNL4uz2A\ni2zfBI1CXapYu57AvMArB11dcI3x0OUThhTpZo3pNHBPw9+WMa15HSPSBkkvaQsN\nKpmw09GipVdpIQkPjROOUdjKIgveyAj6gWhN8RbVnBap5IPkOrq4LGdIccamjb5y\nFF02MhV+F+f1Xp00zQ2RToUs9UU+Ae9ttcALCnFNbz1c1BuxDRcNCwhj87LDZGwk\n1vFVHGtMG2Eu3enoOkfU/CHjwiUWHJF+TZi0U3XoYQKBgQDvxf2OYlLUrjhTVc8u\nLmJk1yMu0AgsHd4wdB2NjouI9L12nQhdgLP7Vco2FbRfAYsX4OAayDTAH7FxBwjl\nPbGkcnGXuLMsTFA3Qmp1K/HANXS4C31l+sUqv/4uLILyU/r/FNVt7Xay3dXfESqp\nfDwevPskFUDJ2xqeOd3xZpdG5wKBgQDdGo2alEU14ZJ1WdXSkLyjF52oWTOFzMLm\nmrfETDfMbXlR04d5oY9flWX9/5ZAMv69sGVnFEfVOuJ8SK4hH3vkgctQbqSYiKLb\nXRMHx7wWgL3vLMS9qgPU3zSU3QJYAw3HF9elMyyV+PJ016JrDeNCgYY1xliRyXcL\nDKFbCn1m4QKBgQClxk7DJam9D+Mzgs1mUX2H2NKjaANudQwMlgtktpw0iXmAy5tg\nAj7t02emMyVs1kVTsg9flPIbrw3gZou46wmp99IfovyF8RE403uFHWfci1jyckc1\nvcaaAvn69J1oa7XKrJ3PjfGWQxe+TUEgwxtR6Tj9vo/3v7vMj5eqclK/GwKBgQCd\njYpSGE2pM3AVx0oinZiN7wodKFMaiOppQN6qNlWcinXk5QKonYN47RCcikAaxzvX\nF5dqeH0naKpzPac3WyQBlKu4SN9pAhRqlEw3QxC4SE0P3arkK/5G9jaVzVcaODLd\nKBQ2V9zxkU/UCsRl3KOQhJOKRihe2lzFtt5T7YmmgQKBgBbpDgrsdmaehYWNSaGc\nNWT2OTlXWb0g6vDf2eFmzAUACIEA69gPPbLTISO5ZnwBz3iMwb+1IknmJ+/4TjPR\nAnesG8z10+/7Wv/BPRBvYNjODhuBcQzXhIer9R48tK0Jjut7isYcbJWP89X+34f5\nCCCst95cI103hf7YI+fMTXEQ\n-----END PRIVATE KEY-----\n",
+  "client_email": "celeb-llmop@celeb-mlop.iam.gserviceaccount.com",
+  "client_id": "102127380324219613220",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/celeb-llmop%40celeb-mlop.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

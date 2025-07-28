@@ -1,0 +1,78 @@
+/* Animate fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Add nice shadows to cards and buttons */
+.shadow-md {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Smooth transitions */
+button,
+input,
+img,
+div {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Highlight on focus */
+input:focus,
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #f43f5e44;
+}
+
+/* Hover effect for cards */
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+
+  .p-6 {
+    padding: 1.5rem;
+  }
+
+  .gap-8 {
+    gap: 2rem;
+  }
+
+  .rounded-xl {
+    border-radius: 1rem;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4f3aed;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

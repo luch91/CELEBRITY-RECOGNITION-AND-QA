@@ -1,0 +1,4 @@
+celeb_env/
+Celebrity_Detection_and_QA.egg-info/
+gcp-key.json
+.env
