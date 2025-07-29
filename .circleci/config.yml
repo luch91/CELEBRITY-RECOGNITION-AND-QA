@@ -3,7 +3,7 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: cimg/base:stable  # CircleCI image with Docker support
+      - image: cimg/base:stable  # CircleCI image with Docker and Linux tools
     working_directory: ~/repo
 
 jobs:
@@ -21,14 +21,7 @@ jobs:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.14
-      - run:
-          name: Install Docker CLI (if needed)
-          command: |
-            if ! command -v docker &> /dev/null; then
-              sudo apt-get update && sudo apt-get install -y docker.io
-            fi
+      - setup_remote_docker  # ← ✅ Removed version specification
       - run:
           name: Authenticate with Google Cloud
           command: |
