@@ -10,7 +10,7 @@ jobs:
           name: Debug context
           command: |
             ls -lah
-            echo "GOOGLE_PROJECT_ID: $GOOGLE_PROJECT_ID"
+            echo $GOOGLE_PROJECT_ID
 
   build_docker_image:
     machine: true
@@ -23,6 +23,7 @@ jobs:
             echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
             gcloud auth configure-docker us-central1-docker.pkg.dev
+
       - run:
           name: Build and Push Docker Image
           command: |
@@ -34,16 +35,26 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+
+      - run:
+          name: Install kubectl
+          command: |
+            curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            chmod +x kubectl
+            sudo mv kubectl /usr/local/bin/
+
       - run:
           name: Authenticate with Google Cloud
           command: |
             echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
             gcloud auth configure-docker us-central1-docker.pkg.dev
+
       - run:
-          name: Configure GKE
+          name: Configure GKE Access
           command: |
             gcloud container clusters get-credentials $GKE_CLUSTER --region $GOOGLE_COMPUTE_REGION --project $GOOGLE_PROJECT_ID
+
       - run:
           name: Deploy to GKE
           command: |
