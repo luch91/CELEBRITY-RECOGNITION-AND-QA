@@ -1,14 +1,9 @@
 version: 2.1
 
-executors:
-  docker-executor:
-    docker:
-      - image: google/cloud-sdk:latest  # ✅ Includes gcloud CLI
-    working_directory: ~/rep
-
 jobs:
   checkout_code:
-    executor: docker-executor
+    machine: true
+    working_directory: ~/repo
     steps:
       - checkout
       - run:
@@ -18,10 +13,10 @@ jobs:
             echo "GOOGLE_PROJECT_ID: $GOOGLE_PROJECT_ID"
 
   build_docker_image:
-    executor: docker-executor
+    machine: true
+    working_directory: ~/repo
     steps:
       - checkout
-      - setup_remote_docker  # ← ✅ Removed version specification
       - run:
           name: Authenticate with Google Cloud
           command: |
@@ -35,10 +30,10 @@ jobs:
             docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT_ID/celeb-llmop/llmops-app:latest
 
   deploy_to_gke:
-    executor: docker-executor
+    machine: true
+    working_directory: ~/repo
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Authenticate with Google Cloud
           command: |
