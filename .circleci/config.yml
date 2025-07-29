@@ -15,7 +15,7 @@ jobs:
           name: Debug context
           command: |
             ls -lah
-            echo $GOOGLE_PROJECT_ID
+            echo "$GOOGLE_PROJECT_ID"
 
   build_docker_image:
     executor: docker-executor
@@ -25,11 +25,11 @@ jobs:
       - run:
           name: Authenticate with Google Cloud
           command: |
-            echo "$GCLOUD_SERVICE_KEY" > gcp-key.json
+            echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
-            gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
+            gcloud auth configure-docker us-central1-docker.pkg.dev
       - run:
-          name: Build and Push Image
+          name: Build and Push Docker Image
           command: |
             docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT_ID/celeb-llmop/llmops-app:latest .
             docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT_ID/celeb-llmop/llmops-app:latest
@@ -44,7 +44,7 @@ jobs:
           command: |
             echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
-            gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
+            gcloud auth configure-docker us-central1-docker.pkg.dev
       - run:
           name: Configure GKE
           command: |
