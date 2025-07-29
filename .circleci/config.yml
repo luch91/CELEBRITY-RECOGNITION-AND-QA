@@ -1,29 +1,37 @@
 version: 2.1
 
+executors:
+  docker-executor:
+    docker:
+      - image: google/cloud-sdk:latest
+    working_directory: ~/repo
+
 jobs:
   checkout_code:
-    machine: true
-    working_directory: ~/repo
+    executor: docker-executor
     steps:
       - checkout
       - run:
           name: Debug context
           command: |
             ls -lah
-            echo $GOOGLE_PROJECT_ID
+            echo "$GOOGLE_PROJECT_ID"
 
   build_docker_image:
-    machine: true
-    working_directory: ~/repo
+    executor: docker-executor
     steps:
       - checkout
+      - setup_remote_docker
+      - run:
+          name: Install Docker CLI
+          command: |
+            apt-get update && apt-get install -y docker.io
       - run:
           name: Authenticate with Google Cloud
           command: |
             echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
-            gcloud auth configure-docker us-central1-docker.pkg.dev
-
+            gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
       - run:
           name: Build and Push Docker Image
           command: |
@@ -31,30 +39,28 @@ jobs:
             docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT_ID/celeb-llmop/llmops-app:latest
 
   deploy_to_gke:
-    machine: true
-    working_directory: ~/repo
+    executor: docker-executor
     steps:
       - checkout
-
+      - setup_remote_docker
       - run:
           name: Install kubectl
           command: |
-            curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            apt-get update && apt-get install -y curl
+            KUBECTL_VERSION="v1.29.0"
+            curl -LO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
             chmod +x kubectl
-            sudo mv kubectl /usr/local/bin/
-
+            mv kubectl /usr/local/bin/
       - run:
           name: Authenticate with Google Cloud
           command: |
             echo "$GCLOUD_SERVICE_KEY" | base64 --decode > gcp-key.json
             gcloud auth activate-service-account --key-file=gcp-key.json
-            gcloud auth configure-docker us-central1-docker.pkg.dev
-
+            gcloud auth configure-docker us-central1-docker.pkg.dev || gcloud auth configure-docker
       - run:
-          name: Configure GKE Access
+          name: Configure GKE
           command: |
             gcloud container clusters get-credentials $GKE_CLUSTER --region $GOOGLE_COMPUTE_REGION --project $GOOGLE_PROJECT_ID
-
       - run:
           name: Deploy to GKE
           command: |
