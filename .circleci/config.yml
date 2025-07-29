@@ -3,7 +3,7 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: google/cloud-sdk:latest
+      - image: cimg/base:stable  # CircleCI image with Docker support
     working_directory: ~/repo
 
 jobs:
@@ -15,13 +15,20 @@ jobs:
           name: Debug context
           command: |
             ls -lah
-            echo "$GOOGLE_PROJECT_ID"
+            echo "GOOGLE_PROJECT_ID: $GOOGLE_PROJECT_ID"
 
   build_docker_image:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.14
+      - run:
+          name: Install Docker CLI (if needed)
+          command: |
+            if ! command -v docker &> /dev/null; then
+              sudo apt-get update && sudo apt-get install -y docker.io
+            fi
       - run:
           name: Authenticate with Google Cloud
           command: |
